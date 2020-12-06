@@ -11,8 +11,11 @@
 <script src="./js/dropbox-js-james/dropbox-js.js"></script>
 <script src="./js/dropbox-poem/paem-dropbox-js.js"></script>
 <script>
+  const BADW_VERSION = '0.0.1';
   const DBX_CLIENT_ID = '';
   const DBX_REDIRECT_URI = '';
+
+  document.getElementById('badw_version').innerText = BADW_VERSION;
 
   paemDropboxAuth(DBX_CLIENT_ID, DBX_REDIRECT_URI)
     .then(function () {
@@ -59,5 +62,6 @@
 </script>
 
 <div>Hello</div>
+<div id="badw_version"></div>
 </body>
 </html>
