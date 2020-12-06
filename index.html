@@ -15,8 +15,6 @@
   const DBX_CLIENT_ID = '';
   const DBX_REDIRECT_URI = '';
 
-  document.getElementById('badw_version').innerText = BADW_VERSION;
-
   paemDropboxAuth(DBX_CLIENT_ID, DBX_REDIRECT_URI)
     .then(function () {
       console.log('BADW: SUCCESS: successfully Dropbox authenticated');
@@ -63,5 +61,9 @@
 
 <div>Hello</div>
 <div id="badw_version"></div>
+
+<script>
+  document.getElementById('badw_version').innerText = BADW_VERSION;
+</script>
 </body>
 </html>
