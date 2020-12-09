@@ -6,64 +6,65 @@
     <title>badw-project</title>
 </head>
 <body>
+<div>Hello</div>
+<div id="badw_version"></div>
+
 <!-- https://github.com/jvilk/BrowserFS -->
 
 <script src="./js/dropbox-js-james/dropbox-js.js"></script>
 <script src="./js/dropbox-poem/paem-dropbox-js.js"></script>
 <script>
-  const BADW_VERSION = '0.0.1';
-  const DBX_CLIENT_ID = '';
-  const DBX_REDIRECT_URI = '';
+  const BADW_VERSION = '0.0.2'
+  const DBX_CLIENT_ID = ''
+  const DBX_REDIRECT_URI = ''
 
   paemDropboxAuth(DBX_CLIENT_ID, DBX_REDIRECT_URI)
     .then(function () {
-      console.log('BADW: SUCCESS: successfully Dropbox authenticated');
+      console.log('BADW: SUCCESS: successfully Dropbox authenticated')
+
+      BrowserFS.install(window)
+      // создание файловой системы с помощью указанной конфигурации, и инициализация BrowserFS
+      // ей. См. тип FileSystemConfigureation для большей информации о конфигурационном объекте
+      // https://github.com/jvilk/BrowserFS/blob/a96aa2d417995dac7d376987839bc4e95e218e06/src/core/browserfs.ts#L84
+      BrowserFS.configure(
+        {
+          // ^ type FileSystemConfiguration (see https://github.com/jvilk/BrowserFS/blob/73e4eca717/src/core/browserfs.ts#L116)
+          fs: 'Dropbox',
+          options: {
+            client: dropbox,
+          },
+        },
+        function (e) {
+          if (e) {
+            throw e
+          }
+          console.log('-i- BrowserFS is ready!')
+        },
+      )
+
+      // ---
+      const testFile = 'text.txt'
+      var fs = BrowserFS.BFSRequire('fs')
+      fs.writeFile(
+        testFile,
+        'Cool, I can do this in the browser!',
+        function (err) {
+          fs.readFile(testFile, function (err, contents) {
+            console.log('!! contents::', contents.toString())
+          })
+          if (err) {
+            console.log('!! err', err)
+          }
+        },
+      )
     })
     .catch(function (err) {
-      console.log('BADW: ERR: dropbox auth: err {200322073417}\n', err);
-    });
-
-
-  //   BrowserFS.install(window)
-  //   // создание файловой системы с помощью указанной конфигурации, и инициализация BrowserFS
-  //   // ей. См. тип FileSystemConfigureation для большей информации о конфигурационном объекте
-  //   // https://github.com/jvilk/BrowserFS/blob/a96aa2d417995dac7d376987839bc4e95e218e06/src/core/browserfs.ts#L84
-  //   BrowserFS.configure(
-  //     {
-  //       // ^ type FileSystemConfiguration (see https://github.com/jvilk/BrowserFS/blob/73e4eca717/src/core/browserfs.ts#L116)
-  //       fs: 'Dropbox',
-  //       options: {
-  //         client: null
-  //       }
-  //     },
-  //     function (e) {
-  //       if (e) {
-  //         throw e
-  //       }
-  //       console.log('-i- BrowserFS is ready!')
-  //     },
-  //   )
-
-  //   // ---
-  //   const testFile = 'text.txt'
-  //   var fs = BrowserFS.BFSRequire('fs')
-  //   fs.writeFile(testFile, 'Cool, I can do this in the browser!', function (
-  //     err,
-  //   ) {
-  //     fs.readFile(testFile, function (err, contents) {
-  //       console.log('!! contents::', contents.toString())
-  //     })
-  //     if (err) {
-  //       console.log('!! err', err)
-  //     }
-  //   })
+      console.log('BADW: ERR: dropbox auth: err {200322073417}\n', err)
+    })
 </script>
 
-<div>Hello</div>
-<div id="badw_version"></div>
-
 <script>
-  document.getElementById('badw_version').innerText = BADW_VERSION;
+  document.getElementById('badw_version').innerText = BADW_VERSION
 </script>
 </body>
 </html>
