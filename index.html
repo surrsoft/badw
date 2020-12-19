@@ -16,7 +16,7 @@
 <script src="./js/dropbox-js-james/dropbox-js.js"></script>
 <script src="./js/dropbox-poem/paem-dropbox-js.js"></script>
 <script>
-  const BADW_VERSION = '0.0.16'
+  const BADW_VERSION = '0.0.17'
   BADW_FILE_NAME='/tmp1.txt'
   const DBX_CLIENT_ID = 'e67evkn1n9gqpab'
   const DBX_REDIRECT_URI = 'https://surrsoft.github.io/badw/'
@@ -70,12 +70,23 @@
       })
   }
 
+  function ny2() {
+    console.log(`!!-!!-!! 1035-10 -> :::::::::::::: ny2() {201219083258b}:${Date.now()}`); // del+
+    paemDropboxFileUploadReplace(BADW_FILE_NAME, 'hello-'+BADW_VERSION)
+      .then(function () {
+        console.log(`!!-!!-!! 1035-20 -> :::::::::::::: success {201219103432}:${Date.now()}`); // del+
+      })
+      .catch(function (err) {
+        console.log('!!-!!-!! 1035-30 dropbox download: err {200322081417b}\n', err);
+      })
+  }
+
   paemDropboxAuth(DBX_CLIENT_ID, DBX_REDIRECT_URI)
     .then(function () {
       console.log('BADW: SUCCESS: successfully Dropbox authenticated')
       try {
         // nx();
-        ny();
+        ny2();
       } catch (err) {
         console.log('BADW: ERR browser-fs: err {201217082657}\n', err); // del+
       }
