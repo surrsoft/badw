@@ -17,7 +17,7 @@
 <script src="./js/dropbox-js-james/dropbox-js.js"></script>
 <script src="./js/dropbox-poem/paem-dropbox-js.js"></script>
 <script>
-  const BADW_VERSION = '0.0.25'
+  const BADW_VERSION = '0.0.26'
   BADW_FILE_NAME = '/tmp1.txt'
   const DBX_CLIENT_ID = 'e67evkn1n9gqpab'
   const DBX_REDIRECT_URI = 'https://surrsoft.github.io/badw/'
@@ -53,7 +53,7 @@
     var fs = BrowserFS.BFSRequire('fs')
     fs.writeFile(
       testFile,
-      'Cool, I can do this in the browser! - '+BADW_VERSION,
+      'Cool, I can do this in the browser! - ' + BADW_VERSION + ' - ' + Date.now(),
       function (err) {
         fs.readFile(testFile, function (err, contents) {
           console.log('!! contents::', contents.toString())
