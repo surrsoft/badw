@@ -15,10 +15,13 @@ OTHER:
 function paemDropboxAuth(pClientId, pRedirectUri) {
   return new Promise((resolve, reject) => {
     try {
-      dropbox.authenticate({ client_id: pClientId, redirect_uri: pRedirectUri, },
-        function () {
+      dropbox.authenticate(
+        { client_id: pClientId, redirect_uri: pRedirectUri, },
+        function (accessToken) {
+          console.log('!!-!!-!! accessToken {201220120744}\n', accessToken); // del+
           resolve();
-        });
+        }
+      );
     } catch (e) {
       reject(e);
     }

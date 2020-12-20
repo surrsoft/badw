@@ -154,8 +154,10 @@
       }
 
       // if we already have an access token, return immediately
-      if (tokenStore('__dbat')) {
-        handlers.onComplete();
+      const accessToken = tokenStore('__dbat');
+      console.log('!!-!!-!! accessToken {201220120630}\n', accessToken); // del+
+      if (accessToken) {
+        handlers.onComplete(accessToken);
         promise && promise.resolve && promise.resolve();
         return promise
       }
