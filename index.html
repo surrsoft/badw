@@ -17,7 +17,7 @@
 <script src="./js/dropbox-js-james/dropbox-js.js"></script>
 <script src="./js/dropbox-poem/paem-dropbox-js.js"></script>
 <script>
-  const BADW_VERSION = '0.0.23'
+  const BADW_VERSION = '0.0.24'
   BADW_FILE_NAME = '/tmp1.txt'
   const DBX_CLIENT_ID = 'e67evkn1n9gqpab'
   const DBX_REDIRECT_URI = 'https://surrsoft.github.io/badw/'
@@ -27,10 +27,7 @@
     console.log('!!-!!-!! 1211-20 accessToken {201220121133}\n', accessToken); // del+
     BrowserFS.install(window)
 
-    console.log('!!-!!-!! 1211-30 dropbox {201220101413}\n', dropbox); // del+
-
     const dropboxClient = new Dropbox.Dropbox({ accessToken });
-
 
     // создание файловой системы с помощью указанной конфигурации, и инициализация BrowserFS
     // ей. См. тип FileSystemConfigureation для большей информации о конфигурационном объекте
@@ -47,25 +44,25 @@
         if (e) {
           throw e
         }
-        console.log('-i- BrowserFS is ready!')
+        console.log('-ii- BrowserFS is ready!')
       },
     )
 
-    // // ---
-    // const testFile = 'text.txt'
-    // var fs = BrowserFS.BFSRequire('fs')
-    // fs.writeFile(
-    //   testFile,
-    //   'Cool, I can do this in the browser!',
-    //   function (err) {
-    //     fs.readFile(testFile, function (err, contents) {
-    //       console.log('!! contents::', contents.toString())
-    //     })
-    //     if (err) {
-    //       console.log('!! err', err)
-    //     }
-    //   },
-    // )
+    // ---
+    const testFile = 'text.txt'
+    var fs = BrowserFS.BFSRequire('fs')
+    fs.writeFile(
+      testFile,
+      'Cool, I can do this in the browser!',
+      function (err) {
+        fs.readFile(testFile, function (err, contents) {
+          console.log('!! contents::', contents.toString())
+        })
+        if (err) {
+          console.log('!! err', err)
+        }
+      },
+    )
 
   }
 
