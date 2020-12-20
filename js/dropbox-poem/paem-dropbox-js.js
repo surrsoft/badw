@@ -19,7 +19,7 @@ function paemDropboxAuth(pClientId, pRedirectUri) {
         { client_id: pClientId, redirect_uri: pRedirectUri, },
         function (accessToken) {
           console.log('!!-!!-!! accessToken {201220120744}\n', accessToken); // del+
-          resolve();
+          resolve(accessToken);
         }
       );
     } catch (e) {
